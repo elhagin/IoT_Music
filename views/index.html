@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IoT Project</title>
+    <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+    <script>
+      var config = {
+        apiKey: "AIzaSyD08rUINwLia9jZ266UT8oxT82ah4-LWoU",
+        authDomain: "iotproject-f73dc.firebaseapp.com",
+        databaseURL: "https://iotproject-f73dc.firebaseio.com",
+        projectId: "iotproject-f73dc",
+        storageBucket: "iotproject-f73dc.appspot.com",
+        messagingSenderId: "480137457989"
+      };
+      firebase.initializeApp(config);
+      var database = firebase.database();
+      var beaconRef = firebase.database().ref('closest_beacon');
+      beaconRef.on('value', function(snapshot) {
+        var field = document.getElementById('closest_beacon');
+        field.innerHTML = snapshot.val();
+      });
+      var leftRef = firebase.database().ref('left');
+      leftRef.on('value', function(snapshot) {
+        var field = document.getElementById('left');
+        field.innerHTML = snapshot.val();
+      });
+      var rightRef = firebase.database().ref('right');
+      rightRef.on('value', function(snapshot) {
+        var field = document.getElementById('right');
+        field.innerHTML = snapshot.val();
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Closest Beacon: <span id="closest_beacon"></span></h1>
+    <h1>Left: <span id="left"></span></h1>
+    <h1>Right: <span id="right"></span></h1>
+  </body>
+</html>
